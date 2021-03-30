@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Login=()=> {
+const Login=({setAuth})=> {
     return (
         <div>
-            LOGIN
+           <h1>LOGIN</h1>
+           <button onClick={()=> setAuth(true)}>Authenticate</button>
         </div>
     )
 }

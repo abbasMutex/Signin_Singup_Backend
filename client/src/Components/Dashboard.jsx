@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Dashboard=()=> {
+const Dashboard=({setAuth})=> {
     return (
         <div>
-            DASHBOARD
+           <h1>DASHBOARD</h1> 
+           <button onClick={()=>setAuth(false)}>Logout</button>
         </div>
     )
 }

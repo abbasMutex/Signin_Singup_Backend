@@ -13,9 +13,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={!isAuthenticate ? (<Login/>): (<Navigate to="/dashboard"/>)}/>
-        <Route path="/register" element={!isAuthenticate ? (<Register/>): (<Navigate to="/login" />)}/>
-        <Route path="/dashboard" element={isAuthenticate ? (<Dashboard/>): (<Navigate to="/login"/>)}/>
+        <Route path="/login" element={!isAuthenticate ? (<Login setAuth={setAuth}/>): (<Navigate to="/dashboard"/>)}/>
+        <Route path="/register" element={!isAuthenticate ? (<Register setAuth={setAuth}/>): (<Navigate to="/login" />)}/>
+        <Route path="/dashboard" element={isAuthenticate ? (<Dashboard setAuth={setAuth}/>): (<Navigate to="/login"/>)}/>
       </Routes>
     </Router>
   );
