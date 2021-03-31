@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
-
-const Register=()=>{
+import {Link} from 'react-router-dom';
+import { toast } from 'react-toastify';
+const Register=({setAuth})=>{
     const [inputs, setInputs] = useState({
         email:"",
         password:"",
@@ -22,11 +23,21 @@ const Register=()=>{
                 body: JSON.stringify(body)
             });
             const data= await response.json();
+            if (data.token){
+                localStorage.setItem("token", data.token);
+                setAuth(true);
+                toast.success("User SuccessFully Registered")
+                
+            }else{
+                setAuth(false);
+                toast.error(data);
+            }
             console.log("token is here: ",data)
         } catch (error) {
             console.error("Data not Found!!")
         }
     }
+
     return (
         <div className="mx-auto">
             
@@ -36,7 +47,10 @@ const Register=()=>{
                 <input className="form-control my-3 w-75 m-auto" type="password" name="password" placeholder="Password..." value={password}  onChange={(e)=> onChange(e)}/>
                 <input className="form-control my-3 w-75 m-auto" type="text" name="name" placeholder="Name..." value={name} onChange={(e)=> onChange(e)}/>
                 <button className="btn btn-success w-75">Submit</button>
+                <br/>
+                <Link to="/login" className="mx-5 text-decoration-none">Login Here</Link>
             </form>
+            
         </div>
     )
 }
